@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Soap for Chemical Prototyping</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-teal: #0FB9B1;
+            --highlight-green: #2ECC71;
+            --bg-soft-white: #F8FAFC;
+            --card-light-blue: #E6F7F6;
+            --text-dark-gray: #2C3E50;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-soft-white);
+            color: var(--text-dark-gray);
+            scroll-behavior: smooth;
+        }
+
+        /* Page Simulation Logic */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            color: var(--text-dark-gray);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-teal);
+        }
+
+        .nav-link.active {
+            color: var(--primary-teal);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-teal);
+            border-radius: 2px;
+        }
+
+        /* Professional Buttons */
+        .btn-green {
+            background-color: var(--highlight-green);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-green:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Card Styles */
+        .card-blue {
+            background-color: var(--card-light-blue);
+            border: 1px solid rgba(15, 185, 177, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card-blue:hover {
+            border-color: var(--primary-teal);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #e6f7f6 0%, #ffffff 100%);
+        }
+
+        .section-header {
+            border-left: 5px solid var(--primary-teal);
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Shared Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-teal-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-[#0FB9B1] rounded-lg flex items-center justify-center text-white font-bold shadow-sm">LS</div>
+                    <span class="font-bold text-xl tracking-tight text-[#2C3E50]">Liquid Soap <span class="text-[#0FB9B1]"></span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" id="nav-home" class="nav-link text-sm uppercase tracking-widest active">Home</button>
+                    <button onclick="showPage('info')" id="nav-info" class="nav-link text-sm uppercase tracking-widest">Project Info</button>
+                    <button onclick="showPage('industrial')" id="nav-industrial" class="nav-link text-xs lg:text-sm uppercase tracking-widest">Industrial Production</button>
+                    <button onclick="showPage('video')" id="nav-video" class="nav-link text-sm uppercase tracking-widest">Project Video</button>
+                </div>
+                <!-- Mobile Menu Toggle (Simplified) -->
+                <div class="md:hidden text-[#0FB9B1]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        
+        <!--  1. Home Page Section -->
+        <section id="home" class="page-section active">
+            <div class="hero-bg py-24 px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-[#2C3E50] mb-6 leading-tight">
+                    Liquid Soap for <br>
+                    <span class="text-[#0FB9B1]">Chemical Prototyping</span>
+                </h1>
+                <div class="w-20 h-1.5 bg-[#2ECC71] mx-auto mb-8 rounded-full"></div>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+			A modern approach to developing specialized surfactant mediums for advanced laboratory analysis and industrial chemical testing.                
+		</p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="showPage('info')" class="btn-green px-10 py-4 rounded-xl font-bold uppercase tracking-wider text-sm">View Full Details</button>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto py-10 px-6">
+                <h2 class="text-3xl font-bold text-center mb-16 text-[#2C3E50]">Team Members</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Member 1 -->
+                    <div class="card-blue p-8 rounded-3xl text-center">
+                        <div class="w-24 h-24 bg-white shadow-inner rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-[#0FB9B1] text-[#0FB9B1] font-bold text-2xl">DB</div>
+                        <h3 class="font-bold text-xl text-[#2C3E50]">Disha Badhe</h3>
+                        <p class="text-[#2ECC71] font-semibold text-sm">PRN: 202401080038</p>
+                        <p class="text-slate-500 text-sm mt-4 font-medium uppercase tracking-tighter">Dept. of Information Technology</p>
+                    </div>
+                    <!-- Member 2 -->
+                    <div class="card-blue p-8 rounded-3xl text-center">
+                        <div class="w-24 h-24 bg-white shadow-inner rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-[#0FB9B1] text-[#0FB9B1] font-bold text-2xl">DM</div>
+                        <h3 class="font-bold text-xl text-[#2C3E50]">Dhanashri Mane</h3>
+                        <p class="text-[#2ECC71] font-semibold text-sm">PRN: 202502080002</p>
+                        <p class="text-slate-500 text-sm mt-4 font-medium uppercase tracking-tighter">Dept. of Information Technology</p>
+                    </div>
+                    <!-- Member 3 -->
+                    <div class="card-blue p-8 rounded-3xl text-center">
+                        <div class="w-24 h-24 bg-white shadow-inner rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-[#0FB9B1] text-[#0FB9B1] font-bold text-2xl">AS</div>
+                        <h3 class="font-bold text-xl text-[#2C3E50]">Asmita Shirke</h3>
+                        <p class="text-[#2ECC71] font-semibold text-sm">PRN: 202502080003</p>
+                        <p class="text-slate-500 text-sm mt-4 font-medium uppercase tracking-tighter">Dept. of Information Technology</p>
+                    </div>
+		<!-- Member 4 -->
+                    <div class="card-blue p-8 rounded-3xl text-center">
+                        <div class="w-24 h-24 bg-white shadow-inner rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-[#0FB9B1] text-[#0FB9B1] font-bold text-2xl">MK</div>
+                        <h3 class="font-bold text-xl text-[#2C3E50]">Kurkute Mansi</h3>
+                        <p class="text-[#2ECC71] font-semibold text-sm">PRN: 202502080005</p>
+                        <p class="text-slate-500 text-sm mt-4 font-medium uppercase tracking-tighter">Dept. of Information Technology</p>
+                    </div>
+		<!-- Member 5 -->
+                    
+<div class="md:col-span-2 flex justify-center">
+    <div class="card-blue p-8 rounded-3xl text-center w-full md:max-w-[50%]">
+        <div class="w-24 h-24 bg-white shadow-inner rounded-2xl flex items-center justify-center mx-auto mb-6 border-2 border-[#0FB9B1] text-[#0FB9B1] font-bold text-2xl">AK</div>
+        <h3 class="font-bold text-xl text-[#2C3E50]">Akib Khan</h3>
+        <p class="text-[#2ECC71] font-semibold text-sm">PRN: 202401080009</p>
+        <p class="text-slate-500 text-sm mt-4 font-medium uppercase tracking-tighter">Dept. of Information Technology</p>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 📄 2. Project Information Section -->
+        <section id="info" class="page-section">
+            <div class="max-w-4xl mx-auto py-16 px-6">
+                <h2 class="text-4xl font-extrabold mb-12 text-[#2C3E50] section-header">Project Information</h2>
+                
+                <div class="space-y-12">
+                    <!-- 1. Abstract -->
+                    <div class="bg-white p-8 rounded-2xl border-b-4 border-[#0FB9B1] shadow-sm">
+                        <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Project Abstract</h3>
+                        <p class="text-slate-600 leading-relaxed italic">
+                            This project focuses on the preparation of liquid soap using treated used cooking oil through the process of saponification. Waste cooking oil was first purified using activated charcoal and bleaching earth to remove impurities, odor, and color. The cleaned oil was then reacted with potassium hydroxide (KOH) to form soap paste, which was further diluted with water. Additives such as glycerin, aloe vera extract, and fragrance were incorporated to enhance moisturizing properties and appearance. The prepared liquid soap was evaluated for smoothness, viscosity, and usability. This project demonstrates an economical and eco-friendly method of recycling used cooking oil into a useful hygiene product while reducing environmental waste.
+                        </p>
+                    </div>
+
+                    <!-- 2. Problem Statement -->
+                    <div class="bg-white p-8 rounded-2xl border-b-4 border-[#0FB9B1] shadow-sm">
+                        <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Problem Statement</h3>
+                        <p class="text-slate-600 leading-relaxed italic">
+                            Commercial liquid soaps contain unknown additives and fragrances that make them unsuitable for laboratory testing and cause unstable pH when mixed with chemicals. This project aims to prepare a simple, eco-friendly liquid soap with controlled composition and stable pH for experimental use.
+                        </p>
+                    </div>
+
+
+                    <!-- 3. Objectives -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Objectives</h3>
+                        <ul class="list-disc pl-6 text-slate-600 space-y-2 font-medium">
+                            <li>To recycle used cooking oil for liquid soap production.</li>
+                            <li>To understand the saponification reaction using KOH.</li>
+                            <li>To prepare liquid soap using simple laboratory techniques.</li>
+                            <li>To improve soap quality using charcoal purification and additives.</li>
+                            <li>To evaluate the consistency and usability of the prepared soap.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. Materials & Methodology -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-[#E6F7F6] p-8 rounded-2xl">
+                            <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Materials Used</h3>
+                            <ul class="text-sm text-slate-700 space-y-2">
+                                <li>• Cooking oil </li>
+                                <li>• Activated Charcoal </li>
+                                <li>• Potassium Hydroxide (KOH) </li>
+                                <li>• Distilled Water </li>
+                                <li>• Glycerin </li>
+				<li>• Aloevera Extract </li>
+				<li>• Hydrochloric Acid (HCl) </li>
+				<li>• Perfume / Fragrance</li>
+                            </ul>
+                        </div>
+                        <div class="bg-[#E6F7F6] p-8 rounded-2xl">
+                            <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Methodology</h3>
+                            <ol class="text-sm text-slate-700 space-y-2 list-decimal pl-4">
+                                <li>Take used cooking oil and heat it lightly.</li>
+                                <li>Add activated charcoal to the oil, stir well, and keep it aside for a few hours.</li>
+                                <li>Filter the oil to remove dirt and bad odor.</li>
+                                <li>Heat the filtered oil again and add bleaching earth powder.</li>
+				<li>Leave the mixture undisturbed, then filter to obtain clean oil.</li>
+                                <li>Carefully dissolve potassium hydroxide (KOH) in distilled water.</li>
+                                <li>Add the purified oil to this KOH solution and mix well.</li>
+                                <li>Stir the mixture for about 30 minutes until a thick paste is formed.</li>
+				<li>Keep the soap paste aside for two days.</li>
+                                <li>Add a small amount of hot water to the paste and mix thoroughly.</li>
+                                <li>Add distilled water, glycerin, aloe vera extract, and fragrance.</li>
+                                <li>Stir continuously until the soap becomes smooth and liquid.</li>
+				<li>Leave it for some time to obtain ready liquid soap.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- 5. Tech & Features -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Technologies Used</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-white px-3 py-1 rounded-md border border-slate-200 text-xs font-bold text-[#2C3E50]">UV-Vis Spectroscopy</span>
+                                <span class="bg-white px-3 py-1 rounded-md border border-slate-200 text-xs font-bold text-[#2C3E50]">Potentiometry</span>
+                                <span class="bg-white px-3 py-1 rounded-md border border-slate-200 text-xs font-bold text-[#2C3E50]">Digital Viscometry</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-[#0FB9B1] mb-4">Key Features</h3>
+                            <ul class="text-sm text-slate-600 space-y-1">
+                                <li>• Eco-friendly recycling of used cooking oil</li>
+                                <li>• Low-cost preparation method</li>
+                                <li>• Reduced environmental waste</li>
+				<li>• Smooth texture with moisturizing additives</li>
+                                <li>• Suitable for small-scale production</li>
+                                <li>• Chemical understanding of saponification</li>
+                            </ul>
+                        </div>
+                    </div>
+
+<!-- Advantages (NEW) -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-green-50 p-8 rounded-2xl border border-green-100">
+                            <h3 class="text-xl font-bold text-green-700 mb-4">🌱 Advantages</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> Eco-friendly</li>
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> Recycled cooking oil</li>
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> Activated charcoal detox effect</li>
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> Aloe vera skin care</li>
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> Industrial scalable</li>
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> Low production cost</li>
+                                <li class="flex items-center text-green-800 text-sm"><span class="mr-2">✅</span> High market demand</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-8 rounded-2xl border border-blue-100">
+                            <h3 class="text-xl font-bold text-blue-700 mb-4">🛡️ Safety Precautions</h3>
+                            <ul class="space-y-2 text-sm text-blue-800">
+                                <li>• Chemical gloves</li>
+                                <li>• Eye goggles</li>
+                                <li>• Apron</li>
+                                <li>• Emergency shower</li>
+                                <li>• Acid neutralization kit</li>
+                                <li>• Trained operators</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 6. Conclusion -->
+                    <div class="bg-[#2C3E50] p-10 rounded-3xl text-white shadow-xl">
+                        <h3 class="text-2xl font-bold mb-4 text-[#2ECC71]">Conclusion</h3>
+                        <p class="opacity-90 leading-relaxed font-light">
+                           Liquid soap was successfully prepared from used cooking oil by purification and saponification using potassium hydroxide. The addition of glycerin and aloe vera improved moisturizing properties, while activated charcoal enhanced oil quality. The final product showed acceptable viscosity and smoothness. This project proves that waste cooking oil can be effectively converted into useful liquid soap, promoting sustainability and cost-effective hygiene solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ <!-- 🏭 3. NEW: Industrial Production Section -->
+        <section id="industrial" class="page-section">
+            <div class="max-w-6xl mx-auto py-16 px-6">
+                <h2 class="text-4xl font-extrabold mb-4 text-[#2C3E50] section-header">Industrial Scale Production</h2>
+                <p class="text-slate-500 mb-12 uppercase tracking-widest text-xs font-bold">Scaling from Lab to Factory | Basis: 1,000 Liters Batch</p>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Column 1: Material Quantities -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="bg-[#2C3E50] text-white p-8 rounded-3xl shadow-lg">
+                            <h3 class="text-xl font-bold mb-6 flex items-center">
+                                <span class="bg-[#2ECC71] w-2 h-8 mr-3 rounded-full"></span>
+                                Raw Materials (1kL)
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Purified Cooking Oil</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">250 L</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Potassium Hydroxide (KOH)</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">45 kg</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Distilled Water</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">500 L</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Activated Charcoal</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">7 kg</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Glycerin</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">25 kg</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Aloe Vera Extract</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">12 kg</span>
+                                </div>
+				<div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Hydrochloric Acid </span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">3 L</span>
+                                </div>
+				<div class="flex justify-between border-b border-slate-600 pb-2">
+                                    <span class="text-slate-400">Perfume / Fragrance</span>
+                                    <span class="font-mono font-bold text-[#2ECC71]">3 L</span>
+                                </div>
+                            </div>
+                            <div class="mt-8 p-4 bg-slate-700 rounded-xl text-xs text-slate-300">
+                                <strong>Note:</strong> Industrial grades of KOH (90% purity) and softened deionized water are required to prevent scaling in machinery.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 & 3: Industrial Workflow -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                            <h3 class="text-2xl font-bold text-[#2C3E50] mb-8">Industrial Manufacturing Workflow</h3>
+                            
+                            <div class="relative pl-8 border-l-2 border-dashed border-teal-200 space-y-10">
+                                <!-- Step 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">01</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Oil Pre-Treatment & Filtration</h4>
+                                    <p class="text-sm text-slate-600">Cooking oil is transferred into a settling tank and heated to 60–70°C. Activated charcoal is added and mixed slowly for 3–4 hours to remove odor, color, and impurities. The treated oil is then passed through a filter press to obtain clean, clarified oil ready for processing.</p>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">02</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Preparation of Alkali Solution</h4>
+                                    <p class="text-sm text-slate-600">Potassium Hydroxide (KOH) is slowly dissolved in distilled water inside a stainless steel tank. This reaction generates heat, so cooling water is used to keep the temperature below 60°C. The solution is mixed until fully clear and uniform.</p>
+                                </div>
+
+                                <!-- Step 3 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">03</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Saponification (Soap Formation)</h4>
+                                    <p class="text-sm text-slate-600">The purified oil is transferred into the main reactor and heated to 75–80°C. The prepared KOH solution is added gradually while continuous mechanical mixing is applied. This process is maintained for 90–120 minutes, during which the oil reacts with KOH to form liquid soap paste.</p>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">04</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Dilution and Enrichment</h4>
+                                    <p class="text-sm text-slate-600">Distilled water is added slowly to the soap paste to reach the required volume and consistency. Glycerin and Aloe Vera extract are then introduced to improve moisturizing properties. Activated charcoal slurry is blended for deep cleansing performance.</p>
+                                </div>
+
+                                <!-- Step 5 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">05</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">pH Adjustment</h4>
+                                    <p class="text-sm text-slate-600">The pH of the soap is continuously monitored. Diluted Hydrochloric Acid (HCl) is added gradually to neutralize excess alkalinity and achieve a skin-safe pH range of 8.5–9.5.</p>
+                                </div>
+
+				<!-- Step 6 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">06</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Cooling and Fragrance Addition</h4>
+                                    <p class="text-sm text-slate-600">The finished liquid soap is cooled to 30–35°C using a heat exchanger. Perfume is added at this stage and mixed evenly to ensure uniform fragrance distribution.</p>
+                                </div>
+				
+				<!-- Step 7 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">07</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Final Filtration and Quality Check</h4>
+                                    <p class="text-sm text-slate-600">The product is passed through fine filters to remove any remaining particles. Quality tests are conducted, including pH, appearance, viscosity, and foam stability, to ensure consistent product standards.</p>
+                                </div>
+
+				<!-- Step 8 -->
+                                <div class="relative">
+                                    <span class="absolute -left-11 top-0 w-6 h-6 bg-[#0FB9B1] text-white rounded-full flex items-center justify-center text-xs font-bold">08</span>
+                                    <h4 class="font-bold text-[#2C3E50] mb-2">Filling and Packaging</h4>
+                                    <p class="text-sm text-slate-600">The finished soap is transferred to storage tanks and filled using automatic filling machines into various container sizes such as 500 ml, 1 L, 5 L, or 20 L. Containers are sealed, labeled, and packed for distribution.</p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 🎥 4. Project Video Section -->
+        <section id="video" class="page-section">
+            <div class="max-w-5xl mx-auto py-16 px-6 text-center">
+                <h2 class="text-4xl font-extrabold mb-4 text-[#2C3E50]">Project Execution Video</h2>
+                <div class="w-16 h-1 bg-[#2ECC71] mx-auto mb-10 rounded-full"></div>
+                
+                <div class="flex justify-center mb-12">
+                    <div class="w-full max-w-4xl bg-black rounded-[2.5rem] overflow-hidden shadow-2xl border-[10px] border-white ring-1 ring-slate-100">
+                        <video class="w-full aspect-video block" controls preload="metadata" poster="https://via.placeholder.com/1280x720/0FB9B1/FFFFFF?text=LSCP+Prototyping+Demo">
+                            <source src="project-demo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-sm border border-teal-50 text-left">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="flex h-3 w-3 rounded-full bg-red-500 animate-pulse"></span>
+                        <h4 class="font-bold text-[#0FB9B1] uppercase text-xs tracking-widest">Description</h4>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        From measuring reagents to completing saponification, this video captures our hands-on laboratory process of converting used cooking oil into liquid soap. We document oil purification, soap formation, and final viscosity and pH testing — turning classroom chemistry into real-world application. 🧪✨
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="bg-white border-t border-teal-100 py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-3 mb-6">
+                <div class="w-2.5 h-2.5 bg-[#0FB9B1] rounded-full opacity-30"></div>
+                <div class="w-2.5 h-2.5 bg-[#2ECC71] rounded-full"></div>
+                <div class="w-2.5 h-2.5 bg-[#0FB9B1] rounded-full opacity-30"></div>
+            </div>
+            <p class="font-bold text-[#2C3E50] text-sm tracking-widest uppercase mb-2">MIT Academy of Engineering, Alandi</p>
+            <p class="text-slate-400 text-xs font-medium">Batch of 2025 - 2026 |Chemical Prototyping Project</p>
+            <div class="mt-6 text-[10px] text-slate-300 uppercase tracking-[0.2em]">All Rights Reserved</div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Page Navigation -->
+    <script>
+        /**
+         * Simulates multi-page navigation by toggling visibility of sections.
+         * @param {string} pageId - The ID of the section to display.
+         */
+        function showPage(pageId) {
+            // 1. Hide all page sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Show the requested page section
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // 3. Update the navigation link styles
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.getElementById('nav-' + pageId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // 4. Smooth scroll to top of viewport
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // 5. Update URL hash (Optional: allows browser back button to some extent)
+            window.location.hash = pageId;
+        }
+
+        // Initialize view based on URL hash or default to 'home'
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (['home', 'info', 'video'].includes(hash)) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+        });
+
+        // Close mobile menu placeholder logic (if needed)
+        document.querySelector('.md\\:hidden').addEventListener('click', () => {
+           // This would expand a mobile menu in a full production environment
+           console.log("Mobile menu clicked");
+        });
+    </script>
+</body>
+</html>
